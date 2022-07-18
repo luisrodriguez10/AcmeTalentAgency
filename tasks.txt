@@ -1,5 +1,4 @@
-[ ]Display Movies
-[ ]Create A Movie
-[ ]Delete A Movie
-[ ]Increment / Decrement Star Rating
-[ ]Show average rating
+[ ]Display Home Page With Seeded Data
+[ ]Ability to Update A Skill
+[ ]Ability to Remove A Skill From A Client
+[ ]Ability to Add A Skill To A Client
