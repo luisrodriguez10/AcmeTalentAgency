@@ -14,6 +14,9 @@ const skillsReducer = (state = [], action) => {
     if(action.type === 'LOAD_SKILLS'){
         return action.skills
     }
+    if(action.type === 'UPDATE_SKILL'){
+        return state.map(skill => skill.id === action.skill.id ? action.skill : skill);
+    }
     return state;
 }
 
@@ -43,6 +46,14 @@ export const fetchSkills = () =>{
     return async(dispatch) =>{
         const skills = (await axios.get('/api/skills')).data;
         dispatch({type: 'LOAD_SKILLS', skills})
+    }
+}
+
+export const save = (skill, history) =>{
+    return async(dispatch) =>{
+        skill = (await axios.put(`/api/skills/${skill.id}`, skill)).data
+        dispatch({type: 'UPDATE_SKILL', skill});
+        history.push('/');
     }
 }
 
