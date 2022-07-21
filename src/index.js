@@ -5,6 +5,7 @@ import { HashRouter as Router, Route, Link } from "react-router-dom";
 import store, { fetchClients, fetchSkills, fetchClientSkills } from "./store";
 import Home from "./Home";
 import SkillForm from "./SkillForm";
+import Client from "./Client";
 
 const App = connect(null, (dispatch) => {
   return {
@@ -26,6 +27,7 @@ const App = connect(null, (dispatch) => {
           <h1><Link to='/'>Acme Talent Agency</Link></h1>
           <Route exact path='/' component={Home} />
           <Route path='/skills/:id' component={SkillForm} />
+          <Route path='/clients/:id' component={Client} />
         </div>
       );
     }

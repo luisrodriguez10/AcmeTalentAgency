@@ -42,7 +42,7 @@ class SkillForm extends Component {
         <form onSubmit={save}>
           <input value={ name } onChange={ev => this.setState({name: ev.target.value})}/>
           <button disabled={!name}>Save</button>
-          <button>Cancel</button>
+          <button onClick={() => this.props.history.push('/')}>Cancel</button>
         </form>
       </div>
     );

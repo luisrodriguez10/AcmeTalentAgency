@@ -29,6 +29,25 @@ app.get('/api/clientSkills', async(req, res, next) =>{
   }
 })
 
+app.post('/api/clientSkills', async(req, res, next) =>{
+  try {
+    res.status(201).send(await ClientSkills.create(req.body));
+  } catch (ex) {
+    next(ex)
+  }
+})
+
+
+app.delete('/api/clientSkills/:id', async(req, res, next) =>{
+  try {
+    const clientSkill = await ClientSkills.findByPk(req.params.id);
+    await clientSkill.destroy();
+    res.sendStatus(204);
+  } catch (ex) {
+    next(ex)
+  }
+})
+
 app.get('/api/skills', async(req, res, next) =>{
   try {
     res.send(await Skill.findAll());

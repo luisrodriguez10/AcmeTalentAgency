@@ -24,6 +24,12 @@ const clientSkillsReducer = (state = [], action) => {
     if(action.type === 'LOAD_CLIENT_SKILLS'){
         return action.clientSkills
     }
+    if(action.type === 'CREATE_CLIENT_SKILL'){
+        return [...state, action.clientSkill]
+    }
+    if(action.type === 'DELETE_CLIENT_SKILL'){
+        return state.filter(clientSkill => clientSkill.id !== action.clientSkill.id);
+    }
     return state;
 }
 
@@ -54,6 +60,20 @@ export const save = (skill, history) =>{
         skill = (await axios.put(`/api/skills/${skill.id}`, skill)).data
         dispatch({type: 'UPDATE_SKILL', skill});
         history.push('/');
+    }
+}
+
+export const createClientSkill = (clientSkill) =>{
+    return async(dispatch) =>{
+        clientSkill = (await axios.post('/api/clientSkills', clientSkill)).data
+        dispatch({type: 'CREATE_CLIENT_SKILL', clientSkill});
+    }
+}
+
+export const deleteClientSkill = (clientSkill) =>{
+    return async(dispatch) =>{
+        await axios.delete(`/api/clientSkills/${clientSkill.id}`)
+        dispatch({type:'DELETE_CLIENT_SKILL', clientSkill})
     }
 }
 
